@@ -22,3 +22,19 @@ import math
            print("Área:", area)
            print("Perímetro:", perimetro)
            print("Volume:", volume)
+        
+      case 2 :
+          raio = ler_numero("Raio: ")
+          print("Perímetro:", 2 * math.pi * raio)
+          print("Volume:", (4/3) * math.pi * raio**3)
+
+      case 3:
+           base = ler_numero("Base: ")
+           l1 = ler_numero("Lado 1: ")
+           l2 = ler_numero("Lado 2: ")
+
+           print("Área:", (base * altura) / 2)
+           print("Perímetro:", l1 + l2 + l3)
+           rint("Volume: Não possui")
+
+        
