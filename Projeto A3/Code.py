@@ -6,7 +6,7 @@ def ler_numero(msg):
 for x in range(4):
      print("\n CALCULADORA GEOMÉTRICA")
      print("1 - Quadrado")
-     print("2 - Circulo)
+     print("2 - Circulo")
      print("3 - Triangulo")
 
     op = input("Escolha uma opçao")
