@@ -8,3 +8,5 @@ for x in range(4):
      print("1 - Quadrado")
      print("2 - Circulo)
      print("3 - Triangulo")
+
+    op = input("Escolha uma opçao")
