@@ -9,7 +9,7 @@ def ler_numero(msg):
      print("2 - Circulo")
      print("3 - Triangulo")
 
-    op = input("Escolha uma opçao")
+ op = input("Escolha uma opçao")
 
    match op:
 
