@@ -3,13 +3,13 @@ import math
 def ler_numero(msg):
     return float(input(msg).replace(",", "."))
 
-  for x in range(5):
+  for x in range(6):
      print("\n CALCULADORA GEOMÉTRICA")
      print("1 - Quadrado")
      print("2 - Circulo")
      print("3 - Triangulo")
      print("4 - piramide")
-     print("Pentagono")
+     print("5 - Pentagono")
  op = input("Escolha uma opção")
 
    match op:
@@ -37,5 +37,7 @@ def ler_numero(msg):
            print("Área:", (base * altura) / 2)
            print("Perímetro:", l1 + l2 + l3)
            rint("Volume: Não possui")
+    
+     case 4 :
 
         
