@@ -3,12 +3,13 @@ import math
 def ler_numero(msg):
     return float(input(msg).replace(",", "."))
 
-  for x in range(4):
+  for x in range(5):
      print("\n CALCULADORA GEOMÉTRICA")
      print("1 - Quadrado")
      print("2 - Circulo")
      print("3 - Triangulo")
-
+     print("4 - piramide")
+     print("Pentagono")
  op = input("Escolha uma opção")
 
    match op:
