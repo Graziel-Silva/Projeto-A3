@@ -9,7 +9,7 @@ def ler_numero(msg):
      print("2 - Circulo")
      print("3 - Triangulo")
 
- op = input("Escolha uma opçao")
+ op = input("Escolha uma opção")
 
    match op:
 
@@ -30,8 +30,8 @@ def ler_numero(msg):
 
       case 3:
            base = ler_numero("Base: ")
-           l1 = ler_numero("Lado 1: ")
-           l2 = ler_numero("Lado 2: ")
+           L1 = ler_numero("Lado 1: ")
+           L2 = ler_numero("Lado 2: ")
 
            print("Área:", (base * altura) / 2)
            print("Perímetro:", l1 + l2 + l3)
