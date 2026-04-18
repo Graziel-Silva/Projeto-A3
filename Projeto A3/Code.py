@@ -8,8 +8,8 @@ def ler_numero(msg):
      print("1 - Quadrado")
      print("2 - Circulo")
      print("3 - Triangulo")
-     print("4 - piramide")
-     print("5 - Pentagono")
+     print("4 - Pirâmide")
+     print("5 - Pentágono")
  op = input("Escolha uma opção")
 
    match op:
@@ -38,6 +38,6 @@ def ler_numero(msg):
            print("Perímetro:", l1 + l2 + l3)
            rint("Volume: Não possui")
     
-     case 4 :
+      case 4 :
 
         
