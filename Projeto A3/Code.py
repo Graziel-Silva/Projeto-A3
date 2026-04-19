@@ -25,7 +25,7 @@ def ler_numero(msg):
            print("Volume:", volume)
         
       case 2 :
-          raio = ler_numero("Raio: ")
+          raio = ler_numero("Raio:")
           print("Perímetro:", 2 * math.pi * raio)
           print("Volume:", (4/3) * math.pi * raio**3)
 
