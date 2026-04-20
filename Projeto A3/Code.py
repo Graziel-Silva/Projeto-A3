@@ -3,13 +3,15 @@ import math
 def ler_numero(msg):
     return float(input(msg).replace(",", "."))
 
-  for x in range(7):
+  for x in range(9):
      print("\n CALCULADORA GEOMÉTRICA")
      print("1 - Quadrado")
      print("2 - Circulo")
      print("3 - Triangulo")
      print("4 - Pirâmide")
      print("5 - Pentágono")
+     print("7 - Retângulo")
+     print("8 - cubo")
  op = input("Escolha uma opção")
 
    match op:
@@ -25,34 +27,64 @@ def ler_numero(msg):
            print("Volume:", volume)
         
       case 2 :
-          raio = ler_numero("Raio:")
-          print("Perímetro:", 2 * math.pi * raio)
-          print("Volume:", (4/3) * math.pi * raio**3)
+           area = math.pi * raio**2
+           perimetro = 2 * math.pi * raio
+           volume = (4/3) * math.pi * raio**3  # esfera
 
+           print(f"\nÁrea: {area:.2f}")
+           print(f"Perímetro (circunferência): {perimetro:.2f}")
+           print(f"Volume (esfera): {volume:.2f}") 
+          
       case 3:
-           base = ler_numero("Base: ")
-           L1 = ler_numero("Lado 1: ")
-           L2 = ler_numero("Lado 2: ")
+            base = ler_numero("Base: ")
+            altura = ler_numero("Altura: ")
+            lado1 = ler_numero("Lado 1: ")
+            lado2 = ler_numero("Lado 2: ")
+            lado3 = ler_numero("Lado 3: ")
 
-           print("Área:", (base * altura) / 2)
-           print("Perímetro:", l1 + l2 + l3)
-           print("Volume: Não possui")
+            area = (base * altura) / 2
+            perimetro = lado1 + lado2 + lado3
+
+            print("Área:", area)
+            print("Perímetro:", perimetro)
+            print("Volume: Não possui")
+
     
       case 4 :
-            base = ler_numero("Área da base: ")
-            altura = ler_numero("Altura: ")
+           lado = ler_numero("Digite o lado da base: ")
+           altura = ler_numero("Digite a altura da pirâmide: ")
+           apotema = ler_numero("Digite o apótema: ")
 
-            volume = (1/3) * base * altura
+           area_base = lado ** 2
+           area_lateral = 2 * lado * apotema
+           area_total = area_base + area_lateral
+           volume = (1/3) * area_base * altura
 
-            print("Volume da pirâmide:", volume)
-
-      case "5": 
+           print(f"\nÁrea da base: {area_base:.2f}")
+           print(f"Área lateral: {area_lateral:.2f}")
+           print(f"Área total: {area_total:.2f}")
+           print(f"Volume: {volume:.2f}")
+          
+      case 5: 
             lado = ler_numero("Lado: ")
             perimetro = 5 * lado
 
             print("Perímetro:", perimetro)
             print("Área: (fórmula mais complexa)")
             print("Volume: Não possui")
+
+      case 7:
+           base = ler_numero("Digite a base: ")
+           altura = ler_numero("Digite a altura: ")
+
+           area = base * altura
+           perimetro = 2 * (base + altura)
+
+          print(f"\nÁrea: {area:.2f}")
+          print(f"Perímetro: {perimetro:.2f}")
+ 
+      case 8:
+
 
       case _:
             print("Opção inválida!")
