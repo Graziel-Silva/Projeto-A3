@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora</title>
+</head>
+<body>
+
+    <h1>Calculadora Geométrica</h1>
+
+    <input type="number" id="valor">
+    <button onclick="calcular()">Calcular</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function calcular() {
+            let r = document.getElementById("valor").value
+            let area = 3.14 * r * r
+            document.getElementById("resultado").innerText = "Área: " + area
+        }
+    </script>
+
+</body>
+</html>
