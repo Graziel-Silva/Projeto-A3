@@ -94,18 +94,6 @@ def ler_numero(msg):
            print("Área total: {area_total:.2f}")
            print("Perímetro (arestas): {perimetro:.2f}")
 
-      case 9:
-          raio = ler_numero("Digite o raio: ")
-          altura = ler_numero("Digite a altura: ")
-
-          volume = (1/3) * math.pi * raio**2 * altura
-          area_lateral = math.pi * raio * geratriz
-          area_total = math.pi * raio * (raio + geratriz)
-
-          print("Volume: {volume:.2f}")
-          print("Área lateral: {area_lateral:.2f}")
-          print("Área total: {area_total:.2f}")
-
       case _:
             print("Opção inválida!")
 
