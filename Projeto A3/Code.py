@@ -10,8 +10,8 @@ def ler_numero(msg):
      print("3 - Triangulo")
      print("4 - Pirâmide")
      print("5 - Pentágono")
-     print("7 - Retângulo")
-     print("8 - Cubo")
+     print("6- Retângulo")
+     print("7 - Cubo")
  op = input("Escolha uma opção")
 
    match op:
@@ -73,7 +73,7 @@ def ler_numero(msg):
             print("Área: (fórmula mais complexa)")
             print("Volume: Não possui")
 
-      case 7:
+      case 6:
            base = ler_numero("Digite a base: ")
            altura = ler_numero("Digite a altura: ")
 
@@ -83,7 +83,7 @@ def ler_numero(msg):
            print("Área: {area:.2f}")
            print("Perímetro: {perimetro:.2f}")
 
-      case 8:
+      case 7:
            lado = ler_numero("Digite o lado do cubo: ")
 
            volume = lado ** 3
