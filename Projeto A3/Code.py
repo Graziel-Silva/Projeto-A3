@@ -3,7 +3,7 @@ import math
 def ler_numero(msg):
     return float(input(msg).replace(",", "."))
 
-  for x in range(9):
+  for x in range(10):
      print("\n CALCULADORA GEOMÉTRICA")
      print("1 - Quadrado")
      print("2 - Circulo")
@@ -80,11 +80,34 @@ def ler_numero(msg):
            area = base * altura
            perimetro = 2 * (base + altura)
 
-          print(f"\nÁrea: {area:.2f}")
-          print(f"Perímetro: {perimetro:.2f}")
- 
-      case 8:
+           print(f"\nÁrea: {area:.2f}")
+           print(f"Perímetro: {perimetro:.2f}")
 
+      case 8:
+           lado = ler_numero("Digite o lado do cubo: ")
+
+           volume = lado ** 3
+           area_total = 6 * (lado ** 2)
+           perimetro = 12 * lado
+
+           print(f"\nVolume: {volume:.2f}")
+           print(f"Área total: {area_total:.2f}")
+           print(f"Perímetro (arestas): {perimetro:.2f}")
+
+      case 9:
+          raio = ler_numero("Digite o raio: ")
+          altura = ler_numero("Digite a altura: ")
+
+          geratriz = math.sqrt(raio**2 + altura**2)
+
+          volume = (1/3) * math.pi * raio**2 * altura
+          area_lateral = math.pi * raio * geratriz
+          area_total = math.pi * raio * (raio + geratriz)
+
+          print(f"\nGeratriz: {geratriz:.2f}")
+          print(f"Volume: {volume:.2f}")
+          print(f"Área lateral: {area_lateral:.2f}")
+          print(f"Área total: {area_total:.2f}")
 
       case _:
             print("Opção inválida!")
