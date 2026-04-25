@@ -192,6 +192,3 @@ while True:
 
                 case _:
                     print("Opção inválida!")
-
-                case _:
-                   print("Opção inválida!")
