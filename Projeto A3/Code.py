@@ -14,58 +14,52 @@ while True:
         case "0":
             print("Encerrando...")
             break
-     print("\n CALCULADORA GEOMÉTRICA")
-     print("1 - Quadrado")
-     print("2 - Circulo")
-     print("3 - Triangulo")
-     print("4 - Pirâmide")
-     print("5 - Pentágono")
-     print("6- Retângulo")
-     print("7 - Cubo")
-     print("8 - Losango")
-     print("9 - Trapézio")
-     print("10 - Hexágono")
-     print("11 - Heptágono")
-     print("12 - Octógono")
-     print("13 - Paralelepípedo")
-     print("14 - Cilindro")
-     print("15 - Esfera")
-     print("16 - Cone")
-     op = input("Escolha uma opção")
+        case "1":
+            print("\n FIGURAS 2D")
+            print("1 - Quadrado")
+            print("2 - Círculo")
+            print("3 - Triângulo")
+            print("4 - Pentágono")
+            print("5 - Retângulo")
+            print("6 - Losango")
+            print("7 - Trapézio")
+            print("8 - Hexágono")
+            print("9 - Heptágono")
+            print("10 - Octógono")
+            print("0 - Voltar")
+            op2 = input("Escolha uma figura: ")
 
-     match op:
-      case "0":
-          print("Encerrando...")
-          break
+            match op2:
+                case "0":
+                   continue
 
-      case "1":
-           lado = ler_numero("Lado: ")
-           area = lado ** 2
-           perimetro = 4 * lado
-           print(f"Área: {area:.2f}")
-           print(f"Perímetro: {perimetro:.2f}")
-           print("Volume: Não possui")
+                case 1:
+                    lado = ler_numero("Lado: ")
+                    area = lado ** 2
+                    perimetro = 4 * lado
+                    print(f"Área: {area:.2f}")
+                    print(f"Perímetro: {perimetro:.2f}")
+                    print("Volume: Não possui")
 
-      case "2":
-            raio = ler_numero("Raio: ")
-            area = math.pi * raio ** 2
-            perimetro = 2 * math.pi * raio
-            print(f"Área: {area:.2f}")
-            print(f"Perímetro: {perimetro:.2f}") 
+                case 2:
+                    raio = ler_numero("Raio: ")
+                    area = math.pi * raio ** 2
+                    perimetro = 2 * math.pi * raio
+                    print(f"Área: {area:.2f}")
+                    print(f"Perímetro: {perimetro:.2f}")
+                    print("Volume: Não possui")
           
-      case "3":
-            base = ler_numero("Base: ")
-            altura = ler_numero("Altura: ")
-            lado1 = ler_numero("Lado 1: ")
-            lado2 = ler_numero("Lado 2: ")
-            lado3 = ler_numero("Lado 3: ")
-
-            area = (base * altura) / 2
-            perimetro = lado1 + lado2 + lado3
-
-            print("Área:", area)
-            print("Perímetro:", perimetro)
-            print("Volume: Não possui")
+                case 3:
+                    base = ler_numero("Base: ")
+                    altura = ler_numero("Altura: ")
+                    lado1 = ler_numero("Lado 1: ")
+                    lado2 = ler_numero("Lado 2: ")
+                    lado3 = ler_numero("Lado 3: ")
+                    area = (base * altura) / 2
+                    perimetro = lado1 + lado2 + lado3
+                    print(f"Área: {area:.2f}")
+                    print(f"Perímetro: {perimetro:.2f}")
+                    print("Volume: Não possui")
 
     
       case "4":
