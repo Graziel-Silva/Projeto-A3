@@ -5,6 +5,16 @@ def ler_numero(msg):
 
 while True:
      print("\n CALCULADORA GEOMÉTRICA")
+    print("1 - Figuras 2D")
+    print("2 - Figuras 3D")
+    print("0 - Sair")
+    op = input("Escolha uma opção: ")
+
+    match op:
+        case "0":
+            print("Encerrando...")
+            break
+     print("\n CALCULADORA GEOMÉTRICA")
      print("1 - Quadrado")
      print("2 - Circulo")
      print("3 - Triangulo")
