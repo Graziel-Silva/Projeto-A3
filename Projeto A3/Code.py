@@ -33,7 +33,7 @@ while True:
                 case "0":
                    continue
 
-                case 1:
+                case "1":
                     lado = ler_numero("Lado: ")
                     area = lado ** 2
                     perimetro = 4 * lado
@@ -41,7 +41,7 @@ while True:
                     print(f"Perímetro: {perimetro:.2f}")
                     print("Volume: Não possui")
 
-                case 2:
+                case "2":
                     raio = ler_numero("Raio: ")
                     area = math.pi * raio ** 2
                     perimetro = 2 * math.pi * raio
@@ -49,7 +49,7 @@ while True:
                     print(f"Perímetro: {perimetro:.2f}")
                     print("Volume: Não possui")
           
-                case 3:
+                case "3":
                     base = ler_numero("Base: ")
                     altura = ler_numero("Altura: ")
                     lado1 = ler_numero("Lado 1: ")
