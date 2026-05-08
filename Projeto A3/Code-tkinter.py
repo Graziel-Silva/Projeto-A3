@@ -2,18 +2,16 @@ import tkinter as tk
 from tkinter import messagebox
 import math
 
-# ==========================
 # CORES, TENHO QUE VER SE TODOS IRÂO GOSTAR DAS CORES, MAS VOU DEIXAR ESSAS AQUI POR ENQUANTO, DEPOIS VEJO SE MUDO OU NÃO
-# ==========================
+
 FUNDO = "#1e1e2f"
 TEXTO = "#ffffff"
 BOTAO_2D = "#3498db"
 BOTAO_3D = "#9b59b6"
 VERDE = "#00c853"
 
-# ==========================
 # 15 FIGURAS EM 2D E 3D
-# ==========================
+
 FIGURAS_2D = [
     ("Quadrado",   ["Lado"]),
     ("Retângulo",  ["Base", "Altura"]),
@@ -37,26 +35,25 @@ FIGURAS_3D = [
     ("Paralelepípedo", ["Comprimento", "Largura", "Altura"]),
 ]
 
-# ==========================
+
 # JANELA DE DEPURAÇÃO
-# ==========================
+
 janela = tk.Tk()
 janela.title("Calculadora Geométrica A3")
 janela.geometry("800x850")
 janela.configure(bg=FUNDO)
 janela.resizable(False, False)
 
-# ==========================
+
 # VARIÁVEIS GLOBAIS 
-# ==========================
+
 figura_atual = ""
 campos = []
 entradas = []
 labels = []
 
-# ==========================
 # TÍTULO, VAI TER QUE SER ESSE AQUI, MAS VOU DEIXAR ESSE COMENTÁRIO PARA ME LEMBRAR DE DEIXAR O TÍTULO AQUI NO MEIO DO CÓDIGO, PORQUE SE EU COLOCAR ANTES DOS BOTÕES FICA MUITO FEIO, ENTÃO VOU DEIXAR ESSE COMENTÁRIO PARA ME LEMBRAR DE COLOCAR O TÍTULO AQUI NO MEIO DO CÓDIGO
-# ==========================
+
 titulo = tk.Label(
     janela,
     text="Calculadora Geométrica A3",
@@ -66,18 +63,18 @@ titulo = tk.Label(
 )
 titulo.pack(pady=15)
 
-# ==========================
+
 # FRAME DOS BOTÕES (com scroll)
-# ==========================
+
 frame_externo = tk.Frame(janela, bg=FUNDO)
 frame_externo.pack()
 
 frame_botoes = tk.Frame(frame_externo, bg=FUNDO)
 frame_botoes.pack()
 
-# ==========================
+
 # FUNÇÃO CONFIGURAR
-# ==========================
+
 def configurar(figura, lista_campos):
 
     global figura_atual, campos
@@ -103,9 +100,9 @@ def configurar(figura, lista_campos):
 
     resultado.config(text="")
 
-# ==========================
-# ESSE AQUI SÂO OS BOTÕES EM 2D PARTE DE WESLEY
-# ==========================
+
+# ESSE AQUI SÂO OS BOTÕES EM 2D 
+
 frame_2d = tk.Frame(frame_botoes, bg=FUNDO)
 frame_2d.grid(row=0, column=0, padx=20, sticky="n")
 
@@ -130,9 +127,9 @@ for nome, lista in FIGURAS_2D:
         command=lambda n=nome, l=lista: configurar(n, l)
     ).pack(pady=3)
 
-# ==========================
+
 # ESSA PARTE AQUI IREI FAZER OS BOTÕES EM 3D, MAS AINDA NÃO FIZ, ENTÃO VOU DEIXAR ESSE COMENTÁRIO PARA ME LEMBRAR DE FAZER DEPOIS
-# ==========================
+
 frame_3d = tk.Frame(frame_botoes, bg=FUNDO)
 frame_3d.grid(row=0, column=1, padx=20, sticky="n")
 
@@ -157,9 +154,9 @@ for nome, lista in FIGURAS_3D:
         command=lambda n=nome, l=lista: configurar(n, l)
     ).pack(pady=3)
 
-# ==========================
+
 # VISU DO CAMPOS
-# ==========================
+
 frame_campos = tk.Frame(janela, bg=FUNDO)
 frame_campos.pack(pady=20)
 
@@ -189,9 +186,8 @@ for i in range(5):
     labels.append(lbl)
     entradas.append(ent)
 
-# ==========================
 # FUNÇÃO CALCULAR, COM DEFEITO NO CALCULO, MAS CREIO QUE CONSEGUI RESOLVER, ENTÃO VOU DEIXAR ESSE COMENTÁRIO PARA ME LEMBRAR DE VER SE O CALCULO ESTÁ CERTO DEPOIS, PORQUE EU FIZ MUITAS FIGURAS E MUITAS FÓRMULAS, ENTÃO PODE SER QUE TENHA ALGUM ERRO EM ALGUMA FÓRMULA, ENTÃO VOU DEIXAR ESSE COMENTÁRIO PARA ME LEMBRAR DE VER SE O CALCULO ESTÁ CERTO DEPOIS
-# ==========================
+
 def calcular():
 
     if figura_atual == "":
@@ -222,9 +218,7 @@ def calcular():
 
         return
 
-    # ======================
-    # QUADRADO
-    # ======================
+    
     if figura_atual == "Quadrado":
 
         area = valores[0] ** 2
@@ -235,9 +229,7 @@ def calcular():
             f"Perímetro = {perimetro:.2f}"
         )
 
-    # ======================
-    # CÍRCULO
-    # ======================
+
     elif figura_atual == "Círculo":
 
         area = math.pi * valores[0] ** 2
@@ -248,9 +240,6 @@ def calcular():
             f"Comprimento = {comprimento:.2f}"
         )
 
-    # ======================
-    # RETÂNGULO
-    # ======================
     elif figura_atual == "Retângulo":
 
         area = valores[0] * valores[1]
@@ -261,18 +250,12 @@ def calcular():
             f"Perímetro = {perimetro:.2f}"
         )
 
-    # ======================
-    # TRIÂNGULO
-    # ======================
     elif figura_atual == "Triângulo":
 
         area = (valores[0] * valores[1]) / 2
 
         texto = f"Área = {area:.2f}"
 
-    # ======================
-    # LOSANGO
-    # ======================
     elif figura_atual == "Losango":
 
         # d1 = diagonal maior, d2 = diagonal menor
@@ -286,19 +269,13 @@ def calcular():
             f"Perímetro = {perimetro:.2f}"
         )
 
-    # ======================
-    # TRAPÉZIO
-    # ======================
     elif figura_atual == "Trapézio":
 
         b_maior, b_menor, h = valores[0], valores[1], valores[2]
         area = ((b_maior + b_menor) * h) / 2
 
         texto = f"Área = {area:.2f}"
-
-    # ======================
-    # PENTÁGONO
-    # ======================
+    
     elif figura_atual == "Pentágono":
 
         l = valores[0]
@@ -310,10 +287,7 @@ def calcular():
             f"Perímetro = {perimetro:.2f}"
         )
 
-    # ======================
-    # HEXÁGONO
-    # ======================
-    elif figura_atual == "Hexágono":
+        elif figura_atual == "Hexágono":
 
         l = valores[0]
         area = (3 * math.sqrt(3) / 2) * l ** 2
@@ -324,9 +298,6 @@ def calcular():
             f"Perímetro = {perimetro:.2f}"
         )
 
-    # ======================
-    # HEPTÁGONO
-    # ======================
     elif figura_atual == "Heptágono":
 
         l = valores[0]
@@ -339,9 +310,7 @@ def calcular():
             f"Perímetro = {perimetro:.2f}"
         )
 
-    # ======================
-    # OCTÓGONO
-    # ======================
+  
     elif figura_atual == "Octógono":
 
         l = valores[0]
@@ -353,9 +322,6 @@ def calcular():
             f"Perímetro = {perimetro:.2f}"
         )
 
-    # ======================
-    # CUBO
-    # ======================
     elif figura_atual == "Cubo":
 
         volume = valores[0] ** 3
@@ -366,9 +332,6 @@ def calcular():
             f"Área Total = {area:.2f}"
         )
 
-    # ======================
-    # ESFERA
-    # ======================
     elif figura_atual == "Esfera":
 
         volume = (4 / 3) * math.pi * valores[0] ** 3
@@ -379,9 +342,7 @@ def calcular():
             f"Área Total = {area:.2f}"
         )
 
-    # ======================
-    # CILINDRO
-    # ======================
+ 
     elif figura_atual == "Cilindro":
 
         r, h = valores[0], valores[1]
@@ -393,9 +354,6 @@ def calcular():
             f"Área Total = {area:.2f}"
         )
 
-    # ======================
-    # CONE
-    # ======================
     elif figura_atual == "Cone":
 
         r, h = valores[0], valores[1]
@@ -408,9 +366,7 @@ def calcular():
             f"Área Total = {area:.2f}"
         )
 
-    # ======================
-    # PIRÂMIDE (base quadrada)
-    # ======================
+
     elif figura_atual == "Pirâmide":
 
         base, h = valores[0], valores[1]
@@ -425,9 +381,6 @@ def calcular():
             f"Área Total = {area_total:.2f}"
         )
 
-    # ======================
-    # PRISMA (base triangular equilátera)
-    # ======================
     elif figura_atual == "Prisma":
 
         base, h, apotema = valores[0], valores[1], valores[2]
@@ -441,9 +394,6 @@ def calcular():
             f"Área Total = {area_total:.2f}"
         )
 
-    # ======================
-    # PARALELEPÍPEDO
-    # ======================
     elif figura_atual == "Paralelepípedo":
 
         c, l, h = valores[0], valores[1], valores[2]
@@ -462,9 +412,7 @@ def calcular():
 
     resultado.config(text=texto)
 
-# ==========================
-# BOTÃO CALCULAR
-# ==========================
+
 botao_calcular = tk.Button(
     janela,
     text="CALCULAR",
@@ -480,9 +428,6 @@ botao_calcular = tk.Button(
 
 botao_calcular.pack(pady=15)
 
-# ==========================
-# RESULTADO 
-# ==========================
 resultado = tk.Label(
     janela,
     text="",
@@ -493,9 +438,6 @@ resultado = tk.Label(
 
 resultado.pack(pady=10)
 
-# ==========================
-# RODAPÉ
-# ==========================
 rodape = tk.Label(
     janela,
     text="Projeto Faculdade - Tkinter Python",
@@ -506,7 +448,6 @@ rodape = tk.Label(
 
 rodape.pack(side="bottom", pady=10)
 
-# ==========================
 # LOOP MORY
-# ==========================
+
 janela.mainloop()
