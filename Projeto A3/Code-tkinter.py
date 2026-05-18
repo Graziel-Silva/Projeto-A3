@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 import math
 
-# CORES, TENHO QUE VER SE TODOS IRÂO GOSTAR DAS CORES, MAS VOU DEIXAR ESSAS AQUI POR ENQUANTO, DEPOIS VEJO SE MUDO OU NÃO
+# CORES 
 
 FUNDO = "#1e1e2f"
 TEXTO = "#ffffff"
