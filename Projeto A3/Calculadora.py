@@ -102,7 +102,7 @@ class App:
         self.fCk = tkfont.Font(family="Consolas",  size=12, weight="bold")
         self.fIc = tkfont.Font(family="Segoe UI",  size=17)
 
-def _build(self):
+    def _build(self):
         self.root.columnconfigure(1, weight=1)
         self.root.rowconfigure(0, weight=1)
         self._sidebar()
