@@ -1,4 +1,108 @@
-    def _build(self):
+import tkinter as tk
+from tkinter import font as tkfont
+import math
+
+#  CORES
+C = {
+    "bg":      "#0a0f1e",
+    "sidebar": "#0d1526",
+    "card":    "#111d35",
+    "card2":   "#0f1a30",
+    "border":  "#1e3a5f",
+    "blue":    "#38bdf8",
+    "purple":  "#8b5cf6",
+    "green":   "#22c55e",
+    "cyan":    "#06b6d4",
+    "text":    "#e2e8f0",
+    "muted":   "#64748b",
+    "dim":     "#94a3b8",
+    "white":   "#ffffff",
+    "error":   "#ef4444",
+    "warning": "#f59e0b",
+}
+
+FIGURAS_2D = [
+    ("Quadrado",       ["Lado"],                               "Quatro lados iguais e ângulos retos.",        "2D"),
+    ("Retângulo",      ["Base", "Altura"],                    "Lados opostos iguais, ângulos de 90°.",       "2D"),
+    ("Triângulo",      ["Base", "Altura"],                    "Polígono de três lados e três vértices.",      "2D"),
+    ("Círculo",        ["Raio"],                               "Todos os pontos equidistantes do centro.",     "2D"),
+    ("Losango",        ["Diagonal Maior", "Diagonal Menor"],   "Quadrilátero com quatro lados iguais.",        "2D"),
+    ("Trapézio",       ["Base Maior", "Base Menor", "Altura"], "Um par de lados paralelos (bases).",          "2D"),
+    ("Pentágono",      ["Lado"],                               "Polígono regular de cinco lados iguais.",      "2D"),
+    ("Hexágono",       ["Lado"],                               "Polígono regular de seis lados iguais.",       "2D"),
+    ("Heptágono",      ["Lado"],                               "Polígono regular de sete lados iguais.",       "2D"),
+    ("Octógono",       ["Lado"],                               "Polígono regular de oito lados iguais.",       "2D"),
+]
+
+FIGURAS_3D = [
+    ("Cubo",           ["Lado"],                               "Sólido com seis faces quadradas iguais.",      "3D"),
+    ("Esfera",         ["Raio"],                               "Superfície equidistante do centro em 3D.",     "3D"),
+    ("Cilindro",       ["Raio", "Altura"],                    "Sólido com duas bases circulares paralelas.",  "3D"),
+    ("Cone",           ["Raio", "Altura"],                    "Base circular com vértice oposto apontado.",   "3D"),
+    ("Pirâmide",       ["Base", "Altura"],                    "Base quadrada com faces triangulares.",         "3D"),
+    ("Prisma",         ["Base", "Altura", "Apótema"],         "Prisma triangular com bases congruentes.",     "3D"),
+    ("Paralelepípedo", ["Comprimento", "Largura", "Altura"],  "Sólido com seis faces retangulares.",          "3D"),
+]
+
+ICONES = {
+    "Quadrado":"□","Retângulo":"▬","Triângulo":"△","Círculo":"○",
+    "Losango":"◇","Trapézio":"⌂","Pentágono":"⬠","Hexágono":"⬡",
+    "Heptágono":"⬡","Octógono":"⬡","Cubo":"⬛","Esfera":"●",
+    "Cilindro":"⊙","Cone":"▽","Pirâmide":"△","Prisma":"◨",
+    "Paralelepípedo":"▦",
+}
+
+FORMULAS = {
+    "Quadrado":       "A = L²   |   P = 4L",
+    "Retângulo":      "A = b×h   |   P = 2(b+h)",
+    "Triângulo":      "A = (b×h) / 2",
+    "Círculo":        "A = πr²   |   C = 2πr",
+    "Losango":        "A = (D×d) / 2",
+    "Trapézio":       "A = (B+b)×h / 2",
+    "Pentágono":      "A = L²√(25+10√5) / 4",
+    "Hexágono":       "A = 3√3/2 × L²",
+    "Heptágono":      "A = 7L² / (4·tan(π/7))",
+    "Octógono":       "A = 2(1+√2) × L²",
+    "Cubo":           "V = L³   |   A = 6L²",
+    "Esfera":         "V = 4πr³/3   |   A = 4πr²",
+    "Cilindro":       "V = πr²h   |   A = 2πr(r+h)",
+    "Cone":           "V = πr²h/3   |   A = πr(r+g)",
+    "Pirâmide":       "V = B²h / 3",
+    "Prisma":         "V = A_base × h",
+    "Paralelepípedo": "V = c × l × h",
+}
+
+class App:
+    def __init__(self):
+        self.root = tk.Tk()
+        self.root.title("Calculadora Geométrica")
+        self.root.geometry("1050x680")
+        self.root.configure(bg=C["bg"])
+        self.root.resizable(True, True)
+        self.root.minsize(880, 580)
+
+        self.figura_atual = None
+        self.entradas     = []
+        self.botoes_sb    = {}
+        self._cvs_sb      = None  
+
+        self._fontes()
+        self._build()
+        self._selecionar(FIGURAS_2D[0])
+
+    def _fontes(self):
+        self.fT  = tkfont.Font(family="Segoe UI", size=16, weight="bold")
+        self.fS  = tkfont.Font(family="Segoe UI", size=11, weight="bold")
+        self.fB  = tkfont.Font(family="Segoe UI", size=10)
+        self.fBb = tkfont.Font(family="Segoe UI", size=10, weight="bold")
+        self.fSm = tkfont.Font(family="Segoe UI", size=9)
+        self.fCt = tkfont.Font(family="Segoe UI", size=8,  weight="bold")
+        self.fM  = tkfont.Font(family="Consolas",  size=11, weight="bold")
+        self.fR  = tkfont.Font(family="Consolas",  size=15, weight="bold")
+        self.fCk = tkfont.Font(family="Consolas",  size=12, weight="bold")
+        self.fIc = tkfont.Font(family="Segoe UI",  size=17)
+
+def _build(self):
         self.root.columnconfigure(1, weight=1)
         self.root.rowconfigure(0, weight=1)
         self._sidebar()
