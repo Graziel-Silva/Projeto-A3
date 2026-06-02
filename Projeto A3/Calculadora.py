@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import font as tkfont
 import math
 
-#  CORES
 C = {
     "bg":      "#0a0f1e",
     "sidebar": "#0d1526",
@@ -115,13 +114,11 @@ class App:
         sb.columnconfigure(0, weight=1)
         sb.rowconfigure(1, weight=1)
 
-        # --- Logo ---
         lf = tk.Frame(sb, bg=C["sidebar"])
         lf.grid(row=0, column=0, pady=(14,0), padx=12, sticky="w")
         tk.Label(lf, text="◈ Formas:", font=self.fS, bg=C["sidebar"], fg=C["blue"]).pack(side="left")
         tk.Frame(sb, bg=C["border"], height=1).grid(row=0, column=0, sticky="sew", padx=8, pady=(42,0))
 
-        # --- Área scrollável ---
         scroll_area = tk.Frame(sb, bg=C["sidebar"])
         scroll_area.grid(row=1, column=0, sticky="nsew")
         scroll_area.rowconfigure(0, weight=1)
@@ -145,7 +142,6 @@ class App:
 
         self.root.bind_all("<MouseWheel>", self._on_mousewheel)
 
-        # --- Preencher lista ---
         self._cat(self.scroll_f, "▸  FIGURAS 2D", C["blue"])
         for f in FIGURAS_2D:
             self._btn_sb(f, C["blue"], "#1e3a5f")
@@ -155,7 +151,6 @@ class App:
         self._cat(self.scroll_f, "▸  FIGURAS 3D", C["purple"])
         for f in FIGURAS_3D:
             self._btn_sb(f, C["purple"], "#2d1b69")
-
 
     def _on_scroll_frame_configure(self, event):
         self._cvs_sb.configure(scrollregion=self._cvs_sb.bbox("all"))
@@ -237,7 +232,6 @@ class App:
         b.bind("<Leave>",    lambda e: b.config(bg=C["sidebar"]))
         return b
 
-    # ─── Inicio ───────────────────────────────
     def _main(self):
         main = tk.Frame(self.root, bg=C["bg"])
         main.grid(row=0, column=1, sticky="nsew")
@@ -272,7 +266,6 @@ class App:
                            bg=C["sidebar"], fg=C["muted"])
         self.ck.pack(side="right", padx=6)
 
-
         self.h_line = tk.Frame(p, bg=C["blue"], height=2)
         self.h_line.grid(row=0, column=0, sticky="sew")
 
@@ -283,12 +276,10 @@ class App:
         c.columnconfigure(1, weight=3)
         c.rowconfigure(0, weight=1)
 
-
         left = tk.Frame(c, bg=C["bg"])
         left.grid(row=0, column=0, sticky="nsew", padx=(16, 8), pady=14)
         left.columnconfigure(0, weight=1)
         left.rowconfigure(1, weight=1)
-
 
         pc = tk.Frame(left, bg=C["card"])
         pc.grid(row=0, column=0, sticky="ew")
@@ -309,7 +300,6 @@ class App:
                                bg=C["card2"], fg=C["cyan"], padx=10, pady=5)
         self.form_l.pack(fill="x", padx=12, pady=(2, 12))
 
-
         rc = tk.Frame(left, bg=C["card"])
         rc.grid(row=1, column=0, sticky="nsew", pady=(10, 0))
         rc.columnconfigure(0, weight=1)
@@ -322,7 +312,6 @@ class App:
         self.res_frame.pack(fill="both", expand=True, padx=12, pady=(0, 12))
 
         self._limpar_res()
-
 
         right = tk.Frame(c, bg=C["bg"])
         right.grid(row=0, column=1, sticky="nsew", padx=(8, 16), pady=14)
@@ -400,7 +389,6 @@ class App:
         self._montar_inputs(campos, cor)
         self._limpar_res()
         self._status(f"Selecionado: {nome}")
-
 
     def _montar_inputs(self, campos, cor):
         for w in self.inp_frame.winfo_children():
@@ -548,7 +536,6 @@ def _calcular(self):
 
         return r
 
-
     def _mostrar_res(self, res):
         self._limpar_res()
         cor = C["green"] if self.figura_atual[3] == "2D" else C["cyan"]
@@ -582,7 +569,6 @@ def _calcular(self):
             ent.config(fg=C["muted"])
         self._limpar_res()
         self._status("Campos limpos")
-
 
     def _desenhar(self, nome, cor):
         c = self.cvs
@@ -670,16 +656,13 @@ def _calcular(self):
             poly([cx-50,cy-14, cx-20,cy-46, cx+52,cy-46, cx+22,cy-14])
             poly([cx+22,cy-14, cx+52,cy-46, cx+52,cy+14, cx+22,cy+46])
 
-
     def _relogio(self):
         self.ck.config(text=time.strftime("%H:%M:%S"))
         self.root.after(1000, self._relogio)
 
-
     def _status(self, msg, cor=None):
         self.status_lbl.config(text=msg, fg=cor or C["green"])
         self.root.after(3500, lambda: self.status_lbl.config(text="Pronto", fg=C["green"]))
-
 
     def _toast(self, msg):
         self._status(f"⚠️ {msg}", C["error"])
@@ -722,7 +705,6 @@ def _calcular(self):
 
     def run(self):
         self.root.mainloop()
-
 
 if _name_ == "_main_":
     App().run()
