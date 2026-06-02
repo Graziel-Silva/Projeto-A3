@@ -437,3 +437,292 @@ class App:
             ent.bind("<FocusOut>", fo)
             ent.bind("<Return>",   lambda e: self._calcular())
             self.entradas.append(ent)
+def _calcular(self):
+        if not self.figura_atual:
+            self._toast("Selecione uma figura primeiro.")
+            return
+
+        nome, campos, _, _ = self.figura_atual
+        vals = []
+        for i, ent in enumerate(self.entradas):
+            raw = ent.get().strip().replace(",", ".")
+            if raw in ("", "0"):
+                self._toast(f"Preencha: {campos[i]}")
+                return
+            try:
+                v = float(raw)
+            except ValueError:
+                self._toast(f"Valor inválido: {campos[i]}")
+                return
+            if v <= 0:
+                self._toast("Valores devem ser maiores que zero.")
+                return
+            vals.append(v)
+
+        res = self._computar(nome, vals)
+        self._mostrar_res(res)
+        self._status(f"Calculado: {nome}")
+
+    def _computar(self, nome, v):
+        r = {}
+        if nome == "Quadrado":
+            r["Área"]      = v[0] ** 2
+            r["Perímetro"] = 4 * v[0]
+            r["Diagonal"]  = v[0] * math.sqrt(2)
+
+        elif nome == "Retângulo":
+            r["Área"]      = v[0] * v[1]
+            r["Perímetro"] = 2 * (v[0] + v[1])
+            r["Diagonal"]  = math.sqrt(v[0]*2 + v[1]*2)
+
+        elif nome == "Triângulo":
+            r["Área"] = (v[0] * v[1]) / 2
+
+        elif nome == "Círculo":
+            r["Área"]           = math.pi * v[0] ** 2
+            r["Circunferência"] = 2 * math.pi * v[0]
+            r["Diâmetro"]       = 2 * v[0]
+
+        elif nome == "Losango":
+            r["Área"]      = (v[0] * v[1]) / 2
+            lado           = math.sqrt((v[0]/2)*2 + (v[1]/2)*2)
+            r["Perímetro"] = 4 * lado
+            r["Lado"]      = lado
+
+        elif nome == "Trapézio":
+            r["Área"] = ((v[0] + v[1]) * v[2]) / 2
+
+        elif nome == "Pentágono":
+            r["Área"]      = (v[0]**2 * math.sqrt(25 + 10*math.sqrt(5))) / 4
+            r["Perímetro"] = 5 * v[0]
+
+        elif nome == "Hexágono":
+            r["Área"]      = (3 * math.sqrt(3) / 2) * v[0]**2
+            r["Perímetro"] = 6 * v[0]
+
+        elif nome == "Heptágono":
+            n = 7
+            r["Área"]      = (n * v[0]**2) / (4 * math.tan(math.pi / n))
+            r["Perímetro"] = n * v[0]
+
+        elif nome == "Octógono":
+            r["Área"]      = 2 * (1 + math.sqrt(2)) * v[0]**2
+            r["Perímetro"] = 8 * v[0]
+
+        elif nome == "Cubo":
+            r["Volume"]     = v[0] ** 3
+            r["Área Total"] = 6 * v[0]**2
+            r["Diagonal"]   = v[0] * math.sqrt(3)
+
+        elif nome == "Esfera":
+            r["Volume"]     = (4/3) * math.pi * v[0]**3
+            r["Área Total"] = 4 * math.pi * v[0]**2
+
+        elif nome == "Cilindro":
+            r["Volume"]     = math.pi * v[0]**2 * v[1]
+            r["Área Total"] = 2 * math.pi * v[0] * (v[0] + v[1])
+            r["Área Base"]  = math.pi * v[0]**2
+
+        elif nome == "Cone":
+            g               = math.sqrt(v[0]*2 + v[1]*2)
+            r["Volume"]     = (1/3) * math.pi * v[0]**2 * v[1]
+            r["Área Total"] = math.pi * v[0] * (v[0] + g)
+            r["Geratriz"]   = g
+
+        elif nome == "Pirâmide":
+            ap              = math.sqrt((v[0]/2)*2 + v[1]*2)
+            r["Volume"]     = (v[0]**2 * v[1]) / 3
+            r["Área Base"]  = v[0]**2
+            r["Área Total"] = v[0]*2 + 4(v[0]*ap/2)
+
+        elif nome == "Prisma":
+            ab              = (v[0] * v[2]) / 2
+            r["Volume"]     = ab * v[1]
+            r["Área Base"]  = ab
+            r["Área Total"] = 2*ab + 3*v[0]*v[1]
+
+        elif nome == "Paralelepípedo":
+            r["Volume"]     = v[0] * v[1] * v[2]
+            r["Área Total"] = 2*(v[0]*v[1] + v[0]*v[2] + v[1]*v[2])
+            r["Diagonal"]   = math.sqrt(v[0]*2 + v[1]2 + v[2]*2)
+
+        return r
+
+
+    def _mostrar_res(self, res):
+        self._limpar_res()
+        cor = C["green"] if self.figura_atual[3] == "2D" else C["cyan"]
+
+        for chave, val in res.items():
+            card = tk.Frame(self.res_frame, bg=C["card2"])
+            card.pack(fill="x", pady=3)
+
+            tk.Frame(card, height=2, bg=cor).pack(fill="x")
+
+            row = tk.Frame(card, bg=C["card2"])
+            row.pack(fill="x", padx=10, pady=6)
+
+            tk.Label(row, text=chave, font=self.fBb,
+                     bg=C["card2"], fg=C["dim"]).pack(side="left")
+            tk.Label(row, text=f"{val:.4f}", font=self.fR,
+                     bg=C["card2"], fg=cor).pack(side="right")
+
+    def _limpar_res(self):
+        for w in self.res_frame.winfo_children():
+            w.destroy()
+        tk.Label(self.res_frame,
+                 text="Preencha os campos e\nclique em CALCULAR",
+                 font=self.fB, bg=C["card"], fg=C["muted"],
+                 justify="center").pack(pady=18)
+
+    def _limpar(self):
+        for ent in self.entradas:
+            ent.delete(0, "end")
+            ent.insert(0, "0")
+            ent.config(fg=C["muted"])
+        self._limpar_res()
+        self._status("Campos limpos")
+
+
+    def _desenhar(self, nome, cor):
+        c = self.cvs
+        c.delete("all")
+        W, H = 240, 165
+        cx, cy = W // 2, H // 2
+
+        def poly(pts):
+            c.create_polygon(pts, fill=C["card"], outline=cor, width=2)
+
+        def ngon(n, r=60, off=-math.pi/2):
+            pts = []
+            for k in range(n):
+                a = off + 2*math.pi*k/n
+                pts += [cx + r*math.cos(a), cy + r*math.sin(a)]
+            poly(pts)
+
+        if nome == "Quadrado":
+            s = 58
+            poly([cx-s,cy-s, cx+s,cy-s, cx+s,cy+s, cx-s,cy+s])
+
+        elif nome == "Retângulo":
+            poly([cx-72,cy-40, cx+72,cy-40, cx+72,cy+40, cx-72,cy+40])
+
+        elif nome == "Triângulo":
+            poly([cx,cy-65, cx-68,cy+50, cx+68,cy+50])
+
+        elif nome == "Círculo":
+            c.create_oval(cx-62,cy-62,cx+62,cy+62, outline=cor, width=2, fill=C["card"])
+            c.create_line(cx,cy, cx+62,cy, fill=C["muted"], width=1)
+            c.create_text(cx+32,cy-10, text="r", fill=C["muted"], font=self.fB)
+
+        elif nome == "Losango":
+            poly([cx,cy-65, cx+52,cy, cx,cy+65, cx-52,cy])
+
+        elif nome == "Trapézio":
+            poly([cx-38,cy-36, cx+38,cy-36, cx+70,cy+36, cx-70,cy+36])
+
+        elif nome == "Pentágono":  ngon(5)
+        elif nome == "Hexágono":   ngon(6)
+        elif nome == "Heptágono":  ngon(7)
+        elif nome == "Octógono":   ngon(8)
+
+        elif nome == "Cubo":
+            poly([cx-42,cy-12, cx+18,cy-12, cx+18,cy+48, cx-42,cy+48])
+            poly([cx-42,cy-12, cx-10,cy-46, cx+50,cy-46, cx+18,cy-12])
+            poly([cx+18,cy-12, cx+50,cy-46, cx+50,cy+14, cx+18,cy+48])
+
+        elif nome == "Esfera":
+            c.create_oval(cx-62,cy-62,cx+62,cy+62, outline=cor, width=2, fill=C["card"])
+            c.create_arc(cx-62,cy-18,cx+62,cy+18, start=0,   extent=180, style="arc", outline=C["border"])
+            c.create_arc(cx-62,cy-18,cx+62,cy+18, start=180, extent=180, style="arc", outline=cor, dash=(4,4))
+
+        elif nome == "Cilindro":
+            c.create_oval(cx-46,cy-58,cx+46,cy-32, outline=cor, width=2, fill=C["card"])
+            c.create_arc(cx-46,cy+10,cx+46,cy+36, start=0,   extent=180, style="arc", outline=C["border"])
+            c.create_arc(cx-46,cy+10,cx+46,cy+36, start=180, extent=180, style="arc", outline=cor)
+            c.create_line(cx-46,cy-45, cx-46,cy+23, fill=cor, width=2)
+            c.create_line(cx+46,cy-45, cx+46,cy+23, fill=cor, width=2)
+
+        elif nome == "Cone":
+            c.create_line(cx,cy-65, cx-56,cy+48, fill=cor, width=2)
+            c.create_line(cx,cy-65, cx+56,cy+48, fill=cor, width=2)
+            c.create_arc(cx-56,cy+20,cx+56,cy+55, start=0,   extent=180, style="arc", outline=C["border"])
+            c.create_arc(cx-56,cy+20,cx+56,cy+55, start=180, extent=180, style="arc", outline=cor)
+
+        elif nome == "Pirâmide":
+            by = cy+52
+            c.create_line(cx,cy-62, cx-55,by, fill=cor, width=2)
+            c.create_line(cx,cy-62, cx+55,by, fill=cor, width=2)
+            c.create_line(cx-55,by, cx+55,by, fill=cor, width=2)
+            c.create_line(cx-55,by, cx-16,by-20, fill=cor, width=2, dash=(3,3))
+            c.create_line(cx+55,by, cx-16,by-20, fill=cor, width=2, dash=(3,3))
+            c.create_line(cx,cy-62, cx-16,by-20, fill=cor, width=2, dash=(3,3))
+
+        elif nome == "Prisma":
+            poly([cx-46,cy+46, cx,cy-30, cx+46,cy+46])
+            c.create_line(cx-46,cy+46, cx-16,cy+24, fill=cor, width=2, dash=(3,3))
+            c.create_line(cx,   cy-30, cx+30,cy-52, fill=cor, width=2, dash=(3,3))
+            c.create_line(cx+46,cy+46, cx+76,cy+24, fill=cor, width=2, dash=(3,3))
+            poly([cx-16,cy+24, cx+30,cy-52, cx+76,cy+24])
+
+        elif nome == "Paralelepípedo":
+            c.create_rectangle(cx-50,cy-14,cx+22,cy+46, outline=cor, fill=C["card"], width=2)
+            poly([cx-50,cy-14, cx-20,cy-46, cx+52,cy-46, cx+22,cy-14])
+            poly([cx+22,cy-14, cx+52,cy-46, cx+52,cy+14, cx+22,cy+46])
+
+
+    def _relogio(self):
+        self.ck.config(text=time.strftime("%H:%M:%S"))
+        self.root.after(1000, self._relogio)
+
+
+    def _status(self, msg, cor=None):
+        self.status_lbl.config(text=msg, fg=cor or C["green"])
+        self.root.after(3500, lambda: self.status_lbl.config(text="Pronto", fg=C["green"]))
+
+
+    def _toast(self, msg):
+        self._status(f"⚠️ {msg}", C["error"])
+        t = tk.Toplevel(self.root)
+        t.overrideredirect(True)
+        t.configure(bg=C["error"])
+        x = self.root.winfo_x() + self.root.winfo_width()//2 - 190
+        y = self.root.winfo_y() + 68
+        t.geometry(f"380x40+{x}+{y}")
+        tk.Label(t, text=f"⚠️  {msg}", font=self.fBb, bg=C["error"], fg=C["white"]).pack(expand=True)
+        t.after(2200, t.destroy)
+
+    def _sobre(self):
+        win = tk.Toplevel(self.root)
+        win.title("Sobre")
+        win.configure(bg=C["card"])
+        w, h = 360, 260
+        x = self.root.winfo_x() + (self.root.winfo_width()-w)//2
+        y = self.root.winfo_y() + (self.root.winfo_height()-h)//2
+        win.geometry(f"{w}x{h}+{x}+{y}")
+        win.resizable(False, False)
+        win.grab_set()
+
+        tk.Frame(win, height=3, bg=C["blue"]).pack(fill="x")
+        tk.Label(win, text="◈", font=tkfont.Font(family="Segoe UI", size=34),
+                 bg=C["card"], fg=C["blue"]).pack(pady=(14, 2))
+        tk.Label(win, text="GeoCalc Pro", font=self.fT, bg=C["card"], fg=C["white"]).pack()
+        tk.Label(win, text="Calculadora Geométrica — Projeto A3",
+                 font=self.fB, bg=C["card"], fg=C["dim"]).pack(pady=3)
+        tk.Frame(win, height=1, bg=C["border"]).pack(fill="x", padx=28, pady=8)
+        for k, v in [("Figuras 2D", str(len(FIGURAS_2D))),
+                     ("Figuras 3D", str(len(FIGURAS_3D))),
+                     ("Tecnologia", "Python + Tkinter")]:
+            row = tk.Frame(win, bg=C["card"])
+            row.pack(pady=2)
+            tk.Label(row, text=k+":", font=self.fBb, bg=C["card"], fg=C["muted"]).pack(side="left", padx=4)
+            tk.Label(row, text=v,    font=self.fB,  bg=C["card"], fg=C["text"]).pack(side="left")
+        tk.Label(win, text="Projeto Universitário — Python",
+                 font=self.fSm, bg=C["card"], fg=C["muted"]).pack(pady=12)
+
+    def run(self):
+        self.root.mainloop()
+
+
+if _name_ == "_main_":
+    App().run()
