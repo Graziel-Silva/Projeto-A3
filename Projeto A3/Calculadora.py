@@ -115,13 +115,13 @@ class App:
         sb.columnconfigure(0, weight=1)
         sb.rowconfigure(1, weight=1)
 
-     
+        # --- Logo ---
         lf = tk.Frame(sb, bg=C["sidebar"])
         lf.grid(row=0, column=0, pady=(14,0), padx=12, sticky="w")
         tk.Label(lf, text="◈ Formas:", font=self.fS, bg=C["sidebar"], fg=C["blue"]).pack(side="left")
         tk.Frame(sb, bg=C["border"], height=1).grid(row=0, column=0, sticky="sew", padx=8, pady=(42,0))
 
-       
+        # --- Área scrollável ---
         scroll_area = tk.Frame(sb, bg=C["sidebar"])
         scroll_area.grid(row=1, column=0, sticky="nsew")
         scroll_area.rowconfigure(0, weight=1)
@@ -145,7 +145,7 @@ class App:
 
         self.root.bind_all("<MouseWheel>", self._on_mousewheel)
 
-      
+        # --- Preencher lista ---
         self._cat(self.scroll_f, "▸  FIGURAS 2D", C["blue"])
         for f in FIGURAS_2D:
             self._btn_sb(f, C["blue"], "#1e3a5f")
@@ -237,7 +237,7 @@ class App:
         b.bind("<Leave>",    lambda e: b.config(bg=C["sidebar"]))
         return b
 
-
+    # ─── Inicio ───────────────────────────────
     def _main(self):
         main = tk.Frame(self.root, bg=C["bg"])
         main.grid(row=0, column=1, sticky="nsew")
