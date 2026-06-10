@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import font as tkfont
 import math
-import time
 
 C = {
     "bg":      "#0a0f1e",
@@ -89,7 +88,6 @@ class App:
         self._fontes()
         self._build()
         self._selecionar(FIGURAS_2D[0])
-        self._relogio()
 
     def _fontes(self):
         self.fT  = tkfont.Font(family="Segoe UI", size=16, weight="bold")
@@ -354,8 +352,6 @@ class App:
         b.bind("<Leave>",    lambda e: b.config(bg=bg))
         return b
 
-    def _statusbar(self, p):
-        pass
 
     def _selecionar(self, fig):
         nome, campos, desc, tipo = fig
@@ -382,7 +378,6 @@ class App:
         self._desenhar(nome, cor)
         self._montar_inputs(campos, cor)
         self._limpar_res()
-        self._status(f"Selecionado: {nome}")
 
 
     def _montar_inputs(self, campos, cor):
@@ -446,7 +441,6 @@ class App:
 
         res = self._computar(nome, vals)
         self._mostrar_res(res)
-        self._status(f"Calculado: {nome}")
 
     def _computar(self, nome, v):
         r = {}
@@ -566,7 +560,6 @@ class App:
             ent.insert(0, "0")
             ent.config(fg=C["muted"])
         self._limpar_res()
-        self._status("Campos limpos")
 
 
     def _desenhar(self, nome, cor):
@@ -654,14 +647,6 @@ class App:
             c.create_rectangle(cx-50,cy-14,cx+22,cy+46, outline=cor, fill=C["card"], width=2)
             poly([cx-50,cy-14, cx-20,cy-46, cx+52,cy-46, cx+22,cy-14])
             poly([cx+22,cy-14, cx+52,cy-46, cx+52,cy+14, cx+22,cy+46])
-
-
-    def _relogio(self):
-        pass
-
-
-    def _status(self, msg, cor=None):
-        pass
 
 
     def _toast(self, msg):
