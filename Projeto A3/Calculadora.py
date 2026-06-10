@@ -17,7 +17,6 @@ C = {
     "dim":     "#94a3b8",
     "white":   "#ffffff",
     "error":   "#ef4444",
-    "warning": "#f59e0b",
 }
 
 FIGURAS_2D = [
@@ -94,11 +93,9 @@ class App:
         self.fS  = tkfont.Font(family="Segoe UI", size=11, weight="bold")
         self.fB  = tkfont.Font(family="Segoe UI", size=10)
         self.fBb = tkfont.Font(family="Segoe UI", size=10, weight="bold")
-        self.fSm = tkfont.Font(family="Segoe UI", size=9)
         self.fCt = tkfont.Font(family="Segoe UI", size=8,  weight="bold")
         self.fM  = tkfont.Font(family="Consolas",  size=11, weight="bold")
         self.fR  = tkfont.Font(family="Consolas",  size=15, weight="bold")
-        self.fCk = tkfont.Font(family="Consolas",  size=12, weight="bold")
         self.fIc = tkfont.Font(family="Segoe UI",  size=17)
 
     def _build(self):
