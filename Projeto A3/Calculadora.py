@@ -225,14 +225,6 @@ class App:
             "cor": cor, "hover": hover
         }
 
-    def _sbtn(self, parent, text, color, cmd):
-        b = tk.Label(parent, text=text, font=self.fSm, bg=C["sidebar"],
-                     fg=color, anchor="w", padx=10, pady=4, cursor="hand2")
-        b.bind("<Button-1>", lambda e: cmd())
-        b.bind("<Enter>",    lambda e: b.config(bg=C["border"]))
-        b.bind("<Leave>",    lambda e: b.config(bg=C["sidebar"]))
-        return b
-
     def _main(self):
         main = tk.Frame(self.root, bg=C["bg"])
         main.grid(row=0, column=1, sticky="nsew")
@@ -241,7 +233,6 @@ class App:
 
         self._header(main)
         self._content(main)
-        self._statusbar(main)
 
     def _header(self, p):
         h = tk.Frame(p, bg=C["sidebar"], height=54)
@@ -659,34 +650,7 @@ class App:
         tk.Label(t, text=f"⚠  {msg}", font=self.fBb, bg=C["error"], fg=C["white"]).pack(expand=True)
         t.after(2200, t.destroy)
 
-    def _sobre(self):
-        win = tk.Toplevel(self.root)
-        win.title("Sobre")
-        win.configure(bg=C["card"])
-        w, h = 360, 260
-        x = self.root.winfo_x() + (self.root.winfo_width()-w)//2
-        y = self.root.winfo_y() + (self.root.winfo_height()-h)//2
-        win.geometry(f"{w}x{h}+{x}+{y}")
-        win.resizable(False, False)
-        win.grab_set()
-
-        tk.Frame(win, height=3, bg=C["blue"]).pack(fill="x")
-        tk.Label(win, text="◈", font=tkfont.Font(family="Segoe UI", size=34),
-                 bg=C["card"], fg=C["blue"]).pack(pady=(14, 2))
-        tk.Label(win, text="GeoCalc Pro", font=self.fT, bg=C["card"], fg=C["white"]).pack()
-        tk.Label(win, text="Calculadora Geométrica — Projeto A3",
-                 font=self.fB, bg=C["card"], fg=C["dim"]).pack(pady=3)
-        tk.Frame(win, height=1, bg=C["border"]).pack(fill="x", padx=28, pady=8)
-        for k, v in [("Figuras 2D", str(len(FIGURAS_2D))),
-                     ("Figuras 3D", str(len(FIGURAS_3D))),
-                     ("Tecnologia", "Python + Tkinter")]:
-            row = tk.Frame(win, bg=C["card"])
-            row.pack(pady=2)
-            tk.Label(row, text=k+":", font=self.fBb, bg=C["card"], fg=C["muted"]).pack(side="left", padx=4)
-            tk.Label(row, text=v,    font=self.fB,  bg=C["card"], fg=C["text"]).pack(side="left")
-        tk.Label(win, text="Projeto Universitário — Python",
-                 font=self.fSm, bg=C["card"], fg=C["muted"]).pack(pady=12)
-
+    
     def run(self):
         self.root.mainloop()
 
