@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import font as tkfont
 import math
+import time
 
 C = {
     "bg":      "#0a0f1e",
@@ -88,6 +89,7 @@ class App:
         self._fontes()
         self._build()
         self._selecionar(FIGURAS_2D[0])
+        self._relogio()
 
     def _fontes(self):
         self.fT  = tkfont.Font(family="Segoe UI", size=16, weight="bold")
@@ -151,6 +153,7 @@ class App:
         self._cat(self.scroll_f, "▸  FIGURAS 3D", C["purple"])
         for f in FIGURAS_3D:
             self._btn_sb(f, C["purple"], "#2d1b69")
+
 
     def _on_scroll_frame_configure(self, event):
         self._cvs_sb.configure(scrollregion=self._cvs_sb.bbox("all"))
@@ -260,11 +263,7 @@ class App:
                              bg=C["blue"], fg=C["white"], padx=6, pady=2)
         self.h_tg.pack(side="left", padx=8)
 
-        right = tk.Frame(h, bg=C["sidebar"])
-        right.grid(row=0, column=2, padx=14, pady=8, sticky="e")
-        self.ck = tk.Label(right, text="00:00:00", font=self.fCk,
-                           bg=C["sidebar"], fg=C["muted"])
-        self.ck.pack(side="right", padx=6)
+
 
         self.h_line = tk.Frame(p, bg=C["blue"], height=2)
         self.h_line.grid(row=0, column=0, sticky="sew")
@@ -276,10 +275,12 @@ class App:
         c.columnconfigure(1, weight=3)
         c.rowconfigure(0, weight=1)
 
+
         left = tk.Frame(c, bg=C["bg"])
         left.grid(row=0, column=0, sticky="nsew", padx=(16, 8), pady=14)
         left.columnconfigure(0, weight=1)
         left.rowconfigure(1, weight=1)
+
 
         pc = tk.Frame(left, bg=C["card"])
         pc.grid(row=0, column=0, sticky="ew")
@@ -300,6 +301,7 @@ class App:
                                bg=C["card2"], fg=C["cyan"], padx=10, pady=5)
         self.form_l.pack(fill="x", padx=12, pady=(2, 12))
 
+
         rc = tk.Frame(left, bg=C["card"])
         rc.grid(row=1, column=0, sticky="nsew", pady=(10, 0))
         rc.columnconfigure(0, weight=1)
@@ -312,6 +314,7 @@ class App:
         self.res_frame.pack(fill="both", expand=True, padx=12, pady=(0, 12))
 
         self._limpar_res()
+
 
         right = tk.Frame(c, bg=C["bg"])
         right.grid(row=0, column=1, sticky="nsew", padx=(8, 16), pady=14)
@@ -352,16 +355,7 @@ class App:
         return b
 
     def _statusbar(self, p):
-        sb = tk.Frame(p, bg=C["sidebar"], height=26)
-        sb.grid(row=2, column=0, sticky="ew")
-        sb.grid_propagate(False)
-        sb.columnconfigure(1, weight=1)
-        tk.Label(sb, text=" ◈ GeoCalc Pro  |  Projeto Universitário",
-                 font=self.fSm, bg=C["sidebar"], fg=C["muted"]
-                 ).grid(row=0, column=0, sticky="w", padx=8)
-        self.status_lbl = tk.Label(sb, text="Pronto", font=self.fSm,
-                                   bg=C["sidebar"], fg=C["green"])
-        self.status_lbl.grid(row=0, column=2, sticky="e", padx=8)
+        pass
 
     def _selecionar(self, fig):
         nome, campos, desc, tipo = fig
@@ -389,6 +383,7 @@ class App:
         self._montar_inputs(campos, cor)
         self._limpar_res()
         self._status(f"Selecionado: {nome}")
+
 
     def _montar_inputs(self, campos, cor):
         for w in self.inp_frame.winfo_children():
@@ -425,7 +420,9 @@ class App:
             ent.bind("<FocusOut>", fo)
             ent.bind("<Return>",   lambda e: self._calcular())
             self.entradas.append(ent)
-def _calcular(self):
+
+
+    def _calcular(self):
         if not self.figura_atual:
             self._toast("Selecione uma figura primeiro.")
             return
@@ -461,7 +458,7 @@ def _calcular(self):
         elif nome == "Retângulo":
             r["Área"]      = v[0] * v[1]
             r["Perímetro"] = 2 * (v[0] + v[1])
-            r["Diagonal"]  = math.sqrt(v[0]*2 + v[1]*2)
+            r["Diagonal"]  = math.sqrt(v[0]**2 + v[1]**2)
 
         elif nome == "Triângulo":
             r["Área"] = (v[0] * v[1]) / 2
@@ -473,7 +470,7 @@ def _calcular(self):
 
         elif nome == "Losango":
             r["Área"]      = (v[0] * v[1]) / 2
-            lado           = math.sqrt((v[0]/2)*2 + (v[1]/2)*2)
+            lado           = math.sqrt((v[0]/2)**2 + (v[1]/2)**2)
             r["Perímetro"] = 4 * lado
             r["Lado"]      = lado
 
@@ -512,16 +509,16 @@ def _calcular(self):
             r["Área Base"]  = math.pi * v[0]**2
 
         elif nome == "Cone":
-            g               = math.sqrt(v[0]*2 + v[1]*2)
+            g               = math.sqrt(v[0]**2 + v[1]**2)
             r["Volume"]     = (1/3) * math.pi * v[0]**2 * v[1]
             r["Área Total"] = math.pi * v[0] * (v[0] + g)
             r["Geratriz"]   = g
 
         elif nome == "Pirâmide":
-            ap              = math.sqrt((v[0]/2)*2 + v[1]*2)
+            ap              = math.sqrt((v[0]/2)**2 + v[1]**2)
             r["Volume"]     = (v[0]**2 * v[1]) / 3
             r["Área Base"]  = v[0]**2
-            r["Área Total"] = v[0]*2 + 4(v[0]*ap/2)
+            r["Área Total"] = v[0]**2 + 4*(v[0]*ap/2)
 
         elif nome == "Prisma":
             ab              = (v[0] * v[2]) / 2
@@ -532,9 +529,10 @@ def _calcular(self):
         elif nome == "Paralelepípedo":
             r["Volume"]     = v[0] * v[1] * v[2]
             r["Área Total"] = 2*(v[0]*v[1] + v[0]*v[2] + v[1]*v[2])
-            r["Diagonal"]   = math.sqrt(v[0]*2 + v[1]2 + v[2]*2)
+            r["Diagonal"]   = math.sqrt(v[0]**2 + v[1]**2 + v[2]**2)
 
         return r
+
 
     def _mostrar_res(self, res):
         self._limpar_res()
@@ -569,6 +567,7 @@ def _calcular(self):
             ent.config(fg=C["muted"])
         self._limpar_res()
         self._status("Campos limpos")
+
 
     def _desenhar(self, nome, cor):
         c = self.cvs
@@ -656,23 +655,23 @@ def _calcular(self):
             poly([cx-50,cy-14, cx-20,cy-46, cx+52,cy-46, cx+22,cy-14])
             poly([cx+22,cy-14, cx+52,cy-46, cx+52,cy+14, cx+22,cy+46])
 
+
     def _relogio(self):
-        self.ck.config(text=time.strftime("%H:%M:%S"))
-        self.root.after(1000, self._relogio)
+        pass
+
 
     def _status(self, msg, cor=None):
-        self.status_lbl.config(text=msg, fg=cor or C["green"])
-        self.root.after(3500, lambda: self.status_lbl.config(text="Pronto", fg=C["green"]))
+        pass
+
 
     def _toast(self, msg):
-        self._status(f"⚠️ {msg}", C["error"])
         t = tk.Toplevel(self.root)
         t.overrideredirect(True)
         t.configure(bg=C["error"])
         x = self.root.winfo_x() + self.root.winfo_width()//2 - 190
         y = self.root.winfo_y() + 68
         t.geometry(f"380x40+{x}+{y}")
-        tk.Label(t, text=f"⚠️  {msg}", font=self.fBb, bg=C["error"], fg=C["white"]).pack(expand=True)
+        tk.Label(t, text=f"⚠  {msg}", font=self.fBb, bg=C["error"], fg=C["white"]).pack(expand=True)
         t.after(2200, t.destroy)
 
     def _sobre(self):
@@ -706,5 +705,6 @@ def _calcular(self):
     def run(self):
         self.root.mainloop()
 
-if _name_ == "_main_":
+
+if __name__ == "__main__":
     App().run()
