@@ -49,3 +49,4 @@ Para testar a lógica atual da calculadora via terminal, siga os passos abaixo:
 *   [Graziel Silva](https://github.com/Graziel-Silva)
 *   [Wesley Oliveira](https://github.com/PRESIDIARIO01)
 *   [Pedro Baleeiro](https://github.com/pedrobaleeiro)
+*   [David Souza](https://github.com/David-Souza00)
