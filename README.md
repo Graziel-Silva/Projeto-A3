@@ -19,10 +19,10 @@ A calculadora abrange uma ampla gama de formas geométricas, divididas em duas c
 
 A escolha das tecnologias reflete o compromisso com as melhores práticas de desenvolvimento de software ensinadas em sala de aula.
 
-*   **Linguagem:** [Python](https://www.python.org/) (Versão 3.10 ou superior para suporte ao `match-case`).
-*   **Paradigma:** Programação Orientada a Objetos (POO).
-*   **Interface Gráfica:** [Tkinter](https://docs.python.org/3/library/tkinter.html) (Em fase de implementação).
-*   **Bibliotecas Internas:** `math` para cálculos trigonométricos e constantes precisas como o Pi.
+*   **Linguagem:** [Python](https://www.python.org/) (Versão 3.10 ou superior para suporte ao `match-case`).
+*   **Paradigma:** Programação Orientada a Objetos (POO).
+*   **Interface Gráfica:** [Tkinter](https://docs.python.org/3/library/tkinter.html) (Em fase de implementação).
+*   **Bibliotecas Internas:** `math` para cálculos trigonométricos e constantes precisas como o Pi.
 
 ## Estrutura de Desenvolvimento
 
@@ -34,19 +34,29 @@ Atualmente, o código está organizado para priorizar a precisão dos cálculos 
 
 Para testar a lógica atual da calculadora via terminal, siga os passos abaixo:
 
-1.  Certifique-se de ter o Python instalado em sua máquina.
-2.  Clone o repositório:
-    ```bash
-    git clone https://github.com/Graziel-Silva/Projeto-A3.git
-    ```
-3.  Navegue até a pasta do projeto e execute o arquivo principal:
-    ```bash
-    python "Projeto A3/Code.py"
-    ```
+1.  Certifique-se de ter o Python instalado em sua máquina.
+2.  Clone o repositório:
+    ```bash
+    git clone https://github.com/Graziel-Silva/Projeto-A3.git
+    ```
+3.  Navegue até a pasta do projeto e execute o arquivo principal:
+    ```bash
+    python "Projeto A3/Code.py"
+    ```
 
 ---
 **Desenvolvido por:**
-*   [Graziel Silva](https://github.com/Graziel-Silva)
-*   [Wesley Oliveira](https://github.com/PRESIDIARIO01)
-*   [Pedro Baleeiro](https://github.com/pedrobaleeiro)
+*   [Graziel Silva](https://github.com/Graziel-Silva)
+*   [Wesley Oliveira](https://github.com/PRESIDIARIO01)
+*   [Pedro Baleeiro](https://github.com/pedrobaleeiro)
 *   [David Souza](https://github.com/David-Souza00)
+*   [Carlos Victor Santos Porto (1012510795)](https://github.com/GAMEROOM1) - Líder
+*   [Kelvin Talison Oliveira Neves (1012517005)](https://github.com/Kelvin-Tss)
+*   Maick Lian Bomfim Da Rocha (1012511078)
+*   [Alison da Silva Cardoso (1012516134)](https://github.com/Alison17272)
+
+## Design da Interface Gráfica (Figma)
+
+O design da interface gráfica está sendo desenvolvido no Figma, e pode ser acessado através do seguinte link:
+
+[Figma - Calculadora Geométrica](https://www.figma.com/design/vNjT5mrh7CTtTX51STzvkX/Untitled?node-id=11-55&t=woDRm9bkvVvQasY6-0)
