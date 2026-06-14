@@ -61,10 +61,10 @@ O protótipo visual está disponível no Figma:
 | Nome | Matrícula | GitHub |
 |:---|:---|:---|
 | Carlos Victor Santos Porto | 1012510795 | [@GAMEROOM1](https://github.com/GAMEROOM1) |
-| Graziel Silva | — | [@Graziel-Silva](https://github.com/Graziel-Silva) |
-| Wesley Oliveira | — | [@PRESIDIARIO01](https://github.com/PRESIDIARIO01) |
-| Pedro Baleeiro | — | [@pedrobaleeiro](https://github.com/pedrobaleeiro) |
+| Graziel Silva | 1012616934 | [@Graziel-Silva](https://github.com/Graziel-Silva) |
+| Wesley Oliveira | 1012614082 | [@PRESIDIARIO01](https://github.com/PRESIDIARIO01) |
+| Pedro Baleeiro | 1012521332 | [@pedrobaleeiro](https://github.com/pedrobaleeiro) |
 | David Souza | 1012619488 | [@David-Souza00](https://github.com/David-Souza00) |
 | Kelvin Talison Oliveira Neves | 1012517005 | [@Kelvin-Tss](https://github.com/Kelvin-Tss) |
-| Maick Lian Bomfim Da Rocha | 1012511078 | — |
+| Maick Lian Bomfim Da Rocha | 1012511078 | [@MAICK077](https://github.com/Maick077)|
 | Alison da Silva Cardoso | 1012516134 | [@Alison17272](https://github.com/Alison17272) |
