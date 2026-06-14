@@ -64,7 +64,7 @@ O protótipo visual está disponível no Figma:
 | Graziel Silva | — | [@Graziel-Silva](https://github.com/Graziel-Silva) |
 | Wesley Oliveira | — | [@PRESIDIARIO01](https://github.com/PRESIDIARIO01) |
 | Pedro Baleeiro | — | [@pedrobaleeiro](https://github.com/pedrobaleeiro) |
-| David Souza | — | [@David-Souza00](https://github.com/David-Souza00) |
+| David Souza | 1012619488 | [@David-Souza00](https://github.com/David-Souza00) |
 | Kelvin Talison Oliveira Neves | 1012517005 | [@Kelvin-Tss](https://github.com/Kelvin-Tss) |
 | Maick Lian Bomfim Da Rocha | 1012511078 | — |
 | Alison da Silva Cardoso | 1012516134 | [@Alison17272](https://github.com/Alison17272) |
